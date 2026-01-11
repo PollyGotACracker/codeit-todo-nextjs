@@ -7,7 +7,7 @@ export default function TodoTitle({ name, isCompleted }: TodoTitleType) {
 
     return (
         <li className={`w-full max-w-[966px] h-[64px] rounded-[27px] border-[2px] border-slate-900 flex justify-center items-center gap-[16px] px-[16px] py-[8px] ${BgStyles[styleKey]}`}>
-            <button className="cursor-pointer">
+            <button>
                 {!isCompleted ? <DotSvg /> : <DotDoneSvg />}
             </button>
             <span className="text-slate-900 font-bold text-xl underline">{name}</span>

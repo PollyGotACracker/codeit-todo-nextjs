@@ -1,26 +1,18 @@
-import PlusSvg from '@/icons/plus.svg';
-import TodoInput from "@/components/TodoInput";
-import Button from "@/components/Button";
-import TodoItem from "@/components/TodoItem";
+import TodoList from '@/app/_components/TodoList';
 import getItems from './_services';
-import { createItem } from './_actions';
 import { groupItems } from './_helpers';
+import TodoAdd from './_components/TodoAdd';
 
 export default async function Home() {
   const res = await getItems();
   const data = groupItems(res);
 
   return (
-    <main className="w-full flex flex-col">
-      <form action={createItem}>
-        <TodoInput id="name" name="name" placeholder="할 일을 입력해주세요" />
-        <Button type="submit" Icon={PlusSvg} text="추가하기" />
-      </form>
-      <section>
-        {data.todo.map(i => <TodoItem key={i.id} {...i} />)}
-      </section>
-      <section>
-        {data.done.map(i => <TodoItem key={i.id} {...i} />)}
+    <main className="w-full flex flex-col items-center p-[8px] gap-[16px]"> {/* desktop: p-[24px] gap-[40px] */}
+      <TodoAdd />
+      <section className="w-full max-w-[1200px] flex flex-wrap gap-x-[24px] gap-y-[48px]">
+        <TodoList data={data.todo} type="todo" />
+        <TodoList data={data.done} type="done" />
       </section>
     </main>
   );

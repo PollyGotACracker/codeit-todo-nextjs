@@ -1,13 +1,12 @@
+import { ButtonHTMLAttributes } from 'react';
 import CapsuleSvg from '@/images/capsule.svg';
 
-interface ButtonType {
+interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,
     text: string,
     bgColor?: string,
     textColor?: string
     type?: "button" | "submit" | "reset" | undefined,
-    id?: string,
-    name?: string
 }
 export default function Button({
     Icon,
@@ -15,24 +14,24 @@ export default function Button({
     bgColor = "var(--slate-100)",
     textColor = "var(--slate-900)",
     type = "button",
-    id,
-    name
+    ...props
 }: ButtonType) {
     return (
         <button
             type={type}
-            {...(id && { id })}
-            {...(name && { name })}
-            className="relative w-full max-w-[168px] h-[56px] flex justify-center items-center gap-x-[4px] cursor-pointer outline-none"
+            {...props}
+            className={`relative min-w-[56px] max-w-[168px] h-[56px] outline-none`}
         >
-            <Icon stroke={textColor} />
-            <span
-                className="font-bold"
-                style={{ color: textColor } as React.CSSProperties}
-            >
-                {text}
+            <span className="inline-flex justify-center items-center gap-x-[4px] pr-[7px] pb-[7px]">
+                <Icon stroke={textColor} />
+                {/* <span
+                    className="font-bold"
+                    style={{ color: textColor } as React.CSSProperties}
+                >
+                    {text}
+                </span> */}
             </span>
-            <CapsuleSvg width="100%" height="100%" fill={bgColor} className="absolute z-[-1]" />
+            <CapsuleSvg width="100%" height="100%" fill={bgColor} className="absolute top-[0px] z-[-1]" />
         </button>
 
     )

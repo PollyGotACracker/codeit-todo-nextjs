@@ -21,7 +21,7 @@ function AttachImg({ imgUrl }: AttachImgType) {
     const styleKey = !imgUrl ? "add" : "edit"
     return (
         <section className="w-full h-full max-w-[384px] relative">
-            <label htmlFor="image" className={`${AttachImgButtonStyle[styleKey]} absolute bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
+            <label htmlFor="image" className={`${AttachImgButtonStyle[styleKey]} absolute bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%]`}>
                 {!imgUrl ? <PlusLgSvg /> : <EditSvg />}
             </label>
             <input type="file" id="image" name="image" accept="image/*" className="absolute opacity-0" />
