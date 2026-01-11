@@ -1,4 +1,4 @@
-import CapsuleSvg from '../../public/images/capsule.svg';
+import CapsuleSvg from '@/images/capsule.svg';
 
 interface ButtonType {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,

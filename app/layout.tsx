@@ -5,19 +5,19 @@ import "./globals.css";
 const nanumSqaure = localFont({
   src: [
     {
-      path: "../public/fonts/NanumSquareL.woff2",
+      path: "../fonts/NanumSquareL.woff2",
       weight: "300",
     },
     {
-      path: "../public/fonts/NanumSquareR.woff2",
+      path: "../fonts/NanumSquareR.woff2",
       weight: "400",
     },
     {
-      path: "../public/fonts/NanumSquareB.woff2",
+      path: "../fonts/NanumSquareB.woff2",
       weight: "700",
     },
     {
-      path: "../public/fonts/NanumSquareEB.woff2",
+      path: "../fonts/NanumSquareEB.woff2",
       weight: "800",
     },
   ],

@@ -1,4 +1,4 @@
-import CapsuleSvg from '../../public/images/capsule.svg';
+import CapsuleSvg from '@/images/capsule.svg';
 
 interface TodoInputType { placeholder: string }
 export default function TodoInput({ placeholder }: TodoInputType) {

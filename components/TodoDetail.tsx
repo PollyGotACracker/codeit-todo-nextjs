@@ -1,7 +1,8 @@
-import ImgSvg from '../../public/images/img.svg';
-import PlusLgSvg from '../../public/icons/plus_lg.svg';
-import EditSvg from '../../public/icons/edit.svg';
-import MemoSvg from '../../public/images/memo.svg';
+import ImgSvg from '@/images/img.svg';
+import MemoSvg from '@/images/memo.svg';
+import PlusLgSvg from '@/icons/plus_lg.svg';
+import EditSvg from '@/icons/edit.svg';
+
 
 interface AttachImgType { imgUrl: string }
 interface MemoType { memo: string }

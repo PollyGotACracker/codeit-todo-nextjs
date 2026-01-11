@@ -1,5 +1,5 @@
-import DotSvg from '../../public/icons/dot.svg';
-import DotDoneSvg from '../../public/icons/dot_done.svg';
+import DotSvg from '@/icons/dot.svg';
+import DotDoneSvg from '@/icons/dot_done.svg';
 
 interface TodoItemType { content: string, isDone: boolean }
 export default function TodoItem({ content, isDone }: TodoItemType) {

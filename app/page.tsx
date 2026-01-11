@@ -1,13 +1,13 @@
-import PlusSvg from '../public/icons/plus.svg';
-import CheckSvg from '../public/icons/check.svg';
-import XSvg from '../public/icons/x.svg';
+import PlusSvg from '@/icons/plus.svg';
+import CheckSvg from '@/icons/check.svg';
+import XSvg from '@/icons/x.svg';
 
-import Header from "./_components/Header";
-import TodoInput from "./_components/TodoInput";
-import Button from "./_components/Button";
-import TodoItem from "./_components/TodoItem";
-import TodoTitle from "./_components/TodoTitle";
-import TodoDetail from "./_components/TodoDetail";
+import Header from "@/components/Header";
+import TodoInput from "@/components/TodoInput";
+import Button from "@/components/Button";
+import TodoItem from "@/components/TodoItem";
+import TodoTitle from "@/components/TodoTitle";
+import TodoDetail from "@/components/TodoDetail";
 
 export default function Home() {
   return (

@@ -1,11 +1,10 @@
-import Image from "next/image";
+import LogoTitle from "@/images/logo_title.svg"
 
 export default function Header() {
     return (
         <header className="w-full h-[60px] flex items-center bg-white border-b border-b-slate-200">
-            <Image
-                src="/images/logo_title.svg"
-                alt="doit logo"
+            <LogoTitle
+                alt="logo"
                 width={151}
                 height={40}
             />
