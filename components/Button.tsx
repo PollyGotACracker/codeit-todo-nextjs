@@ -3,24 +3,26 @@ import CapsuleSvg from '@/images/capsule.svg';
 interface ButtonType {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,
     text: string,
-    id: string,
-    name: string,
     bgColor?: string,
     textColor?: string
+    type?: "button" | "submit" | "reset" | undefined,
+    id?: string,
+    name?: string
 }
 export default function Button({
     Icon,
     text,
-    id,
-    name,
     bgColor = "var(--slate-100)",
     textColor = "var(--slate-900)",
-
+    type = "button",
+    id,
+    name
 }: ButtonType) {
     return (
         <button
-            id={id}
-            name={name}
+            type={type}
+            {...(id && { id })}
+            {...(name && { name })}
             className="relative w-full max-w-[168px] h-[56px] flex justify-center items-center gap-x-[4px] cursor-pointer outline-none"
         >
             <Icon stroke={textColor} />

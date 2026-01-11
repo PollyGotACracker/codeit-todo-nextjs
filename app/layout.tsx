@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import Header from "@/components/Header";
+
 const nanumSqaure = localFont({
   src: [
     {
@@ -39,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${nanumSqaure.variable} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
