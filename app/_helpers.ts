@@ -1,10 +1,10 @@
-import { ItemGetRes } from "@/types";
+import { Item } from "@/types";
 
 interface GroupedItems {
-  todo: ItemGetRes[];
-  done: ItemGetRes[];
+  todo: Item[];
+  done: Item[];
 }
-export function groupItems(data: ItemGetRes[]): GroupedItems {
+export function groupItems(data: Item[]): GroupedItems {
   return data.reduce<GroupedItems>(
     (acc, cur) => {
       const key = cur.isCompleted ? "done" : "todo";

@@ -3,9 +3,6 @@ export interface Item {
   name: string;
   isCompleted: boolean;
 }
-export interface ItemPostReq {
-  name: string;
-}
 export interface ItemDetail {
   id: number;
   tenantId: string;
@@ -13,6 +10,10 @@ export interface ItemDetail {
   memo: string;
   imageUrl: string;
   isCompleted: boolean;
+}
+
+export interface ItemPostReq {
+  name: string;
 }
 export interface ItemPatchReq {
   name: string;
