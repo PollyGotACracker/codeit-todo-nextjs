@@ -1,4 +1,4 @@
-import { ItemGetRes } from "@/types";
+import { Item } from "@/types";
 import TodoItem from "./TodoItem";
 import TodoSvg from "@/images/todo.svg";
 import DoneSvg from "@/images/done.svg";
@@ -6,7 +6,7 @@ import TodoEmptySvg from "@/images/todo_empty.svg"
 import DoneEmptySvg from "@/images/done_empty.svg"
 
 interface TodoList {
-    data: ItemGetRes[],
+    data: Item[],
     type: 'todo' | 'done'
 }
 export default function TodoList({ data, type }: TodoList) {

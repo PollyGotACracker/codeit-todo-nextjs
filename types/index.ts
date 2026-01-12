@@ -1,4 +1,4 @@
-export interface ItemGetRes {
+export interface Item {
   id: number;
   name: string;
   isCompleted: boolean;
@@ -6,7 +6,7 @@ export interface ItemGetRes {
 export interface ItemPostReq {
   name: string;
 }
-export interface ItemPostRes {
+export interface ItemDetail {
   id: number;
   tenantId: string;
   name: string;
@@ -20,11 +20,9 @@ export interface ItemPatchReq {
   imageUrl: string;
   isCompleted: boolean;
 }
-export interface ItemPatchRes {
-  id: number;
-  imageUrl: string;
-  memo: string;
-  name: string;
-  tenantId: string;
-  isCompleted: boolean;
+export interface ImageUploadRes {
+  url: string;
+}
+export interface ItemDeleteRes {
+  message: string;
 }

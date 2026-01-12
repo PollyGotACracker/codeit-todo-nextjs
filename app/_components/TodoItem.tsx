@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import DotSvg from '@/icons/dot.svg';
 import DotDoneSvg from '@/icons/dot_done.svg';
-import { ItemGetRes } from '@/types';
+import { Item } from '@/types';
 import { completeItem } from '@/app/_actions';
 
-export default function TodoItem({ id, name, isCompleted }: ItemGetRes) {
+export default function TodoItem({ id, name, isCompleted }: Item) {
     const styleKey = !isCompleted ? 'undone' : 'done';
     return (
         <li className={`w-full max-w-[588px] h-[50px] rounded-[27px] border-[2px] border-slate-900 flex items-center gap-[16px] px-[16px] py-[8px] ${BgStyles[styleKey]}`}>

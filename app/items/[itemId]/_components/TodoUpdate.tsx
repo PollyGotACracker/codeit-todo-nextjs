@@ -1,0 +1,83 @@
+'use client';
+
+import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import TodoTitle from "./TodoTitle";
+import TodoDetail from "./TodoDetail";
+import Button from "@/components/Button";
+import CheckSvg from "@/icons/check.svg";
+import XSvg from "@/icons/x.svg";
+import { ItemDetail } from "@/types";
+import { deleteItem, updateItem } from "../_actions";
+import { ROUTE } from "@/constants/route";
+
+interface TodoUpdate {
+    data: ItemDetail;
+}
+export default function TodoUpdate({ data }: TodoUpdate) {
+    const router = useRouter();
+    const [isPending, startTransition] = useTransition();
+    const [isChanged, setIsChanged] = useState(false);
+    const handleUpdate = updateItem.bind(null, data.id);
+    const handleDelete = async () => {
+        await deleteItem(data.id);
+        startTransition(() => {
+            router.push(ROUTE.HOME)
+        })
+    }
+
+    const onChangeForm = (e: React.FormEvent<HTMLFormElement>) => {
+        const form = e.currentTarget;
+        let hasChanged = false;
+
+        // checkbox checked 값이 false일 경우 FormData에 포함되지 않기 때문
+        const elements = Array.from(form.elements) as (HTMLInputElement | HTMLTextAreaElement)[];
+        for (const element of elements) {
+            if (!element.name) continue;
+            let flag = false;
+
+            if (element instanceof HTMLInputElement && element.type === "checkbox") {
+                // input checkbox
+                flag = element.checked !== element.defaultChecked;
+            } else {
+                // input text | textarea
+                flag = element.value !== element.defaultValue;
+            }
+            if (flag) {
+                hasChanged = true;
+                break;
+            }
+        }
+
+        setIsChanged(hasChanged);
+    }
+
+
+    return (
+        <form action={handleUpdate} onChange={onChangeForm} className="w-full flex flex-col items-center">
+            <TodoTitle name={data?.name} isCompleted={data?.isCompleted} />
+            <TodoDetail memo={data?.memo} imageUrl={data?.imageUrl} setIsChanged={setIsChanged} />
+            <section className="w-full flex justify-end gap-[24px]">
+                <Button
+                    disabled={!isChanged}
+                    type="submit"
+                    Icon={CheckSvg}
+                    text={UPDATE_BUTTON_TEXT}
+                    {...isChanged && { bgColor: "var(--lime-300)" }}
+                />
+                <Button
+                    disabled={isPending}
+                    type="button"
+                    Icon={XSvg}
+                    text={DELETE_BUTTON_TEXT}
+                    bgColor="var(--rose-500)"
+                    textColor="#fff"
+                    onClick={handleDelete}
+                />
+            </section>
+        </form>
+    )
+}
+
+const UPDATE_BUTTON_TEXT = "수정 완료"
+const DELETE_BUTTON_TEXT = "삭제하기"

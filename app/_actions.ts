@@ -2,7 +2,7 @@
 
 import fetcher from "@/libs/fetcher";
 import { revalidatePath } from "next/cache";
-import { ItemPostRes } from "@/types";
+import { ItemDetail } from "@/types";
 import { ROUTE } from "@/constants/route";
 
 export async function createItem(formData: FormData) {
@@ -10,7 +10,7 @@ export async function createItem(formData: FormData) {
   if (!name) return;
 
   const endpoint = `/items`;
-  await fetcher<ItemPostRes>(endpoint, {
+  await fetcher<ItemDetail>(endpoint, {
     method: "POST",
     body: JSON.stringify({ name }),
   });
@@ -20,10 +20,11 @@ export async function createItem(formData: FormData) {
 
 export async function completeItem(itemId: number, isCompleted: boolean) {
   const endpoint = `/items/${itemId}`;
-  await fetcher<ItemPostRes>(endpoint, {
+  await fetcher<ItemDetail>(endpoint, {
     method: "PATCH",
     body: JSON.stringify({ isCompleted }),
   });
 
   revalidatePath(ROUTE.HOME);
+  revalidatePath(`${ROUTE.ITEMS}/${itemId}`);
 }
