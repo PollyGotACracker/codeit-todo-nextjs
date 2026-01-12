@@ -5,12 +5,13 @@ import { useState, useTransition } from "react";
 import { ItemDetail } from "@/types";
 import { ROUTE } from "@/constants/route";
 import { ITEM_TEXT } from "@/constants/messages";
-import TodoTitle from "./TodoTitle";
-import TodoDetail from "./TodoDetail";
-import Button from "@/components/Button";
+import { deleteItem, updateItem } from "../_actions";
 import CheckSvg from "@/icons/check.svg";
 import XSvg from "@/icons/x.svg";
-import { deleteItem, updateItem } from "../_actions";
+import TodoTitle from "./TodoTitle";
+import TodoAttachImg from "./TodoAttachImg";
+import TodoMemo from "./TodoMemo";
+import Button from "@/components/Button";
 
 interface TodoUpdate {
     data: ItemDetail;
@@ -53,11 +54,13 @@ export default function TodoUpdate({ data }: TodoUpdate) {
         setIsChanged(hasChanged);
     }
 
-
     return (
         <form action={handleUpdate} onChange={onChangeForm} className="w-full flex flex-col items-center">
             <TodoTitle name={data?.name} isCompleted={data?.isCompleted} />
-            <TodoDetail memo={data?.memo} imageUrl={data?.imageUrl} setIsChanged={setIsChanged} />
+            <section className="w-full h-[311px] flex justify-center gap-[24px]">
+                <TodoAttachImg imageUrl={data?.imageUrl} setIsChanged={setIsChanged} />
+                <TodoMemo memo={data?.memo} />
+            </section>
             <section className="w-full flex justify-end gap-[24px]">
                 <Button
                     disabled={!isChanged}
