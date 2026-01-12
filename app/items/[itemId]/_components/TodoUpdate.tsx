@@ -1,7 +1,6 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, } from "react";
 import { ItemDetail } from "@/types";
 import { ROUTE } from "@/constants/route";
 import { ITEM_TEXT } from "@/constants/messages";
@@ -12,21 +11,23 @@ import TodoTitle from "./TodoTitle";
 import TodoAttachImg from "./TodoAttachImg";
 import TodoMemo from "./TodoMemo";
 import Button from "@/components/Button";
+import useServerAction from "@/hooks/useServerAction";
 
 interface TodoUpdate {
     data: ItemDetail;
 }
 export default function TodoUpdate({ data }: TodoUpdate) {
-    const router = useRouter();
-    const [isPending, startTransition] = useTransition();
     const [isChanged, setIsChanged] = useState(false);
-    const handleUpdate = updateItem.bind(null, data.id);
-    const handleDelete = async () => {
-        await deleteItem(data.id);
-        startTransition(() => {
-            router.push(ROUTE.HOME)
-        })
-    }
+    const _update = updateItem.bind(null, data.id);
+    const _delete = deleteItem.bind(null, data.id);
+    const [updateAction, isUpdatePending, isUpdateSuccess] = useServerAction(_update);
+    const [deleteAction, isDeletePending] = useServerAction(_delete, ROUTE.HOME);
+
+    useEffect(() => {
+        if (isUpdateSuccess) {
+            setIsChanged(false);
+        }
+    }, [isUpdateSuccess])
 
     const onChangeForm = (e: React.FormEvent<HTMLFormElement>) => {
         const form = e.currentTarget;
@@ -55,7 +56,7 @@ export default function TodoUpdate({ data }: TodoUpdate) {
     }
 
     return (
-        <form action={handleUpdate} onChange={onChangeForm} className="w-full flex flex-col items-center">
+        <form action={updateAction} onChange={onChangeForm} className="w-full flex flex-col items-center">
             <TodoTitle name={data?.name} isCompleted={data?.isCompleted} />
             <section className="w-full h-[311px] flex justify-center gap-[24px]">
                 <TodoAttachImg imageUrl={data?.imageUrl} setIsChanged={setIsChanged} />
@@ -63,20 +64,20 @@ export default function TodoUpdate({ data }: TodoUpdate) {
             </section>
             <section className="w-full flex justify-end gap-[24px]">
                 <Button
-                    disabled={!isChanged}
+                    disabled={!isChanged || isUpdatePending}
                     type="submit"
                     Icon={CheckSvg}
                     text={ITEM_TEXT.UPDATE_BUTTON}
-                    {...isChanged && { bgColor: "var(--lime-300)" }}
+                    {...(isChanged) && { bgColor: "var(--lime-300)" }}
                 />
                 <Button
-                    disabled={isPending}
+                    disabled={isDeletePending}
                     type="button"
                     Icon={XSvg}
                     text={ITEM_TEXT.DELETE_BUTTON}
                     bgColor="var(--rose-500)"
                     textColor="#fff"
-                    onClick={handleDelete}
+                    onClick={deleteAction}
                 />
             </section>
         </form>
