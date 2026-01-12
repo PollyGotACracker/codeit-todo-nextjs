@@ -2,14 +2,15 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import { ItemDetail } from "@/types";
+import { ROUTE } from "@/constants/route";
+import { ITEM_TEXT } from "@/constants/messages";
 import TodoTitle from "./TodoTitle";
 import TodoDetail from "./TodoDetail";
 import Button from "@/components/Button";
 import CheckSvg from "@/icons/check.svg";
 import XSvg from "@/icons/x.svg";
-import { ItemDetail } from "@/types";
 import { deleteItem, updateItem } from "../_actions";
-import { ROUTE } from "@/constants/route";
 
 interface TodoUpdate {
     data: ItemDetail;
@@ -62,14 +63,14 @@ export default function TodoUpdate({ data }: TodoUpdate) {
                     disabled={!isChanged}
                     type="submit"
                     Icon={CheckSvg}
-                    text={UPDATE_BUTTON_TEXT}
+                    text={ITEM_TEXT.UPDATE_BUTTON}
                     {...isChanged && { bgColor: "var(--lime-300)" }}
                 />
                 <Button
                     disabled={isPending}
                     type="button"
                     Icon={XSvg}
-                    text={DELETE_BUTTON_TEXT}
+                    text={ITEM_TEXT.DELETE_BUTTON}
                     bgColor="var(--rose-500)"
                     textColor="#fff"
                     onClick={handleDelete}
@@ -78,6 +79,3 @@ export default function TodoUpdate({ data }: TodoUpdate) {
         </form>
     )
 }
-
-const UPDATE_BUTTON_TEXT = "수정 완료"
-const DELETE_BUTTON_TEXT = "삭제하기"

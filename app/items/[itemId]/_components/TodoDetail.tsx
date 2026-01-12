@@ -1,15 +1,15 @@
 'use client';
 
+import Image from 'next/image';
+import { useState } from 'react';
 import { ItemDetail } from '@/types';
+import { ITEM_TEXT } from '@/constants/messages';
 import ImgSvg from '@/images/img.svg';
 import MemoSvg from '@/images/memo.svg';
 import PlusLgSvg from '@/icons/plus_lg.svg';
 import EditSvg from '@/icons/edit.svg';
-import { useState } from 'react';
 import { uploadImage } from '../_actions';
-import Image from 'next/image';
 import { validateImageFile } from '../_helpers';
-
 
 type AttachImgType = Pick<ItemDetail, "imageUrl"> & { setIsChanged: React.Dispatch<React.SetStateAction<boolean>> };
 type MemoType = Pick<ItemDetail, "memo">;
@@ -43,7 +43,9 @@ function AttachImg({ imageUrl, setIsChanged }: AttachImgType) {
         } catch (e) {
             if (e instanceof Error) {
                 if (e.message === "Invalid file") {
-                    setAlert(INVALID_FILE_ALERT_TEXT)
+                    setAlert(ITEM_TEXT.INVALID_FILE_ALERT);
+                } else {
+                    setAlert(ITEM_TEXT.ERROR_FILE_ALERT);
                 }
             }
         }
@@ -72,7 +74,7 @@ function AttachImg({ imageUrl, setIsChanged }: AttachImgType) {
         </>
     )
 }
-const INVALID_FILE_ALERT_TEXT = "파일명 대소문자, 크기 5MB 이하 이미지만 첨부 가능합니다."
+
 function AttachImgEmpty() {
     return (
         <div className="w-full h-full rounded-[24px] bg-slate-50 border-slate-300 border-[2px] border-dashed flex justify-center items-center">
@@ -91,7 +93,7 @@ function Memo({ memo }: MemoType) {
         <section
             className="w-full max-w-[588px] h-full relative rounded-[16px] px-[8px] py-[16px] flex flex-col justify-center items-center gap-y-[16px]"
         >
-            <h2 className="w-[48px] h-[18px] font-extrabold text-amber-800">Memo</h2>
+            <h2 className="w-[48px] h-[18px] font-extrabold text-amber-800">{ITEM_TEXT.MEMO_LABEL}</h2>
             <textarea
                 defaultValue={memo}
                 id="memo"
