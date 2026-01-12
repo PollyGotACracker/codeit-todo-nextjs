@@ -1,4 +1,5 @@
 import { Item } from "@/types";
+import { HOME_TEXT } from "@/constants/messages";
 import TodoItem from "./TodoItem";
 import TodoSvg from "@/images/todo.svg";
 import DoneSvg from "@/images/done.svg";
@@ -31,20 +32,18 @@ export default function TodoList({ data, type }: TodoList) {
     )
 }
 
-const todo = {
-    Title: TodoSvg,
-    empty: {
-
-        EmptyImg: TodoEmptySvg,
-        msg: "할 일이 없어요.\nTODO를 새롭게 추가해주세요!"
+const UI_DATA = {
+    todo: {
+        Title: TodoSvg,
+        empty: {
+            EmptyImg: TodoEmptySvg,
+            msg: HOME_TEXT.TODO_EMPTY_MSG
+        }
+    }, done: {
+        Title: DoneSvg,
+        empty: {
+            EmptyImg: DoneEmptySvg,
+            msg: HOME_TEXT.DONE_EMPTY_MSG
+        }
     }
 }
-const done = {
-    Title: DoneSvg,
-    empty: {
-        EmptyImg: DoneEmptySvg,
-        msg: "아직 다 한 일이 없어요.\n해야 할 일을 체크해보세요!"
-    }
-}
-
-const UI_DATA = { todo, done }

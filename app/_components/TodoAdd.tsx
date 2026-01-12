@@ -2,6 +2,7 @@
 
 import { ChangeEvent, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { HOME_TEXT } from "@/constants/messages";
 import PlusSvg from '@/icons/plus.svg';
 import Input from "@/components/Input";
 import Button from "@/components/Button";
@@ -18,20 +19,15 @@ export default function TodoAdd() {
 
     return (
         <form action={createItem} className="w-full flex justify-center gap-x-[8px]">
-            <Input id="name" name="name" placeholder={CREATE_PLACEHOLDER} onChange={onChangeInput} />
+            <Input id="name" name="name" placeholder={HOME_TEXT.CREATE_PLACEHOLDER} onChange={onChangeInput} />
             <Button
                 disabled={!isFilled || pending}
                 type="submit"
                 Icon={PlusSvg}
-                text={CREATE_BUTTON_TEXT}
+                text={HOME_TEXT.CREATE_BUTTON}
                 {...isFilled && { bgColor: "var(--violet-600)", textColor: "#fff" }}
             />
         </form>
     )
 
 }
-
-
-const CREATE_PLACEHOLDER = "할 일을 입력해주세요";
-const CREATE_BUTTON_TEXT = "추가하기";
-
