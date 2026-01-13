@@ -8,9 +8,9 @@ export default async function Home() {
   const data = groupItems(res);
 
   return (
-    <main className="w-full flex flex-col items-center p-[8px] gap-[16px]"> {/* desktop: p-[24px] gap-[40px] */}
+    <main className="main gap-[24px] desktop:gap-[40px]">
       <TodoAdd />
-      <section className="w-full max-w-[1200px] flex flex-wrap gap-x-[24px] gap-y-[48px]">
+      <section className="w-full max-w-[1200px] flex flex-col desktop:flex-row gap-x-[24px] gap-y-[48px]">
         <TodoList data={data.todo} type="todo" />
         <TodoList data={data.done} type="done" />
       </section>

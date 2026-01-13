@@ -10,7 +10,7 @@ export default async function TodoItem({ params }: PageProps) {
     const res = await getItem(itemId);
 
     return (
-        <main className="main bg-white">
+        <main className="main bg-white gap-[16px] desktop:gap-[24px]">
             <TodoUpdate data={res} />
         </main>
     )

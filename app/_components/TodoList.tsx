@@ -17,7 +17,7 @@ export default function TodoList({ data, type }: TodoList) {
         <section className="w-full flex flex-col gap-y-[16px]"> {/* desktop 64px */}
             <Title />
             <div className="flex flex-col items-center gap-y-[16px]"> {/* desktop 24px */}
-                <empty.EmptyImg width="120px" height="120px" />
+                <empty.EmptyImg className="w-[120px] desktop:w-[240px] h-[120px] desktop:h-[240px]" />
                 <p className="whitespace-pre-line text-center text-slate-400 font-bold">{empty.msg}</p>
             </div>
         </section>

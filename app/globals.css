@@ -87,19 +87,31 @@
     flex-direction: column;
     align-items: center;
     padding: 8px 16px;
-    gap: 16px;
+  }
+
+  .logo {
+    background-image: url("/logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 71px;
+    height: 40px;
   }
 
   @media screen and (min-width: 375px) {
     .main {
       padding: 24px;
-      gap: 40px;
+    }
+
+    .logo {
+      background-image: url("/logo_title.svg");
+      width: 151px;
     }
   }
 
   @media screen and (min-width: 744px) {
     .main {
       max-width: 1200px;
+      padding: 24px 0;
     }
   }
 }

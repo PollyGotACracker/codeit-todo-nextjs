@@ -27,7 +27,7 @@ export default function Button({
             className={`isolate relative ${BUTTON_STYLE[key]} desktop:w-[168px] h-[56px] flex-shrink-0 outline-none`}
         >
             <span className="z-1 relative inline-flex justify-center items-center gap-x-[4px] translate-x-[-3.5px] translate-y-[-3.5px]">
-                <Icon stroke={textColor} className="translate-y-[1px]" />
+                <Icon stroke={textColor} className="translate-y-[1.5px]" />
                 <span
                     className={`font-bold ${TEXT_STYLE[key]} desktop:inline-block`}
                     style={{ color: textColor } as React.CSSProperties}

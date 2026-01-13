@@ -11,9 +11,10 @@ export default function Input({ id, name, placeholder, ...props }: InputHTMLAttr
                 name={name}
                 placeholder={placeholder}
                 defaultValue=""
-                spellCheck={false}
+                spellCheck="false"
+                autoComplete="false"
                 {...props}
-                className="absolute w-full outline-none px-[16px] bottom-7px"
+                className="absolute w-full outline-none px-[24px] translate-y-[-3.5px]"
             />
         </div >
     )

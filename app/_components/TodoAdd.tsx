@@ -28,7 +28,7 @@ export default function TodoAdd() {
     };
 
     return (
-        <form action={createAction} className="w-full flex justify-center gap-x-[8px]">
+        <form action={createAction} className="w-full flex justify-center gap-x-[8px] desktop:gap-x-[16px]">
             <Input id="name" name="name" placeholder={HOME_TEXT.CREATE_PLACEHOLDER} onChange={onChangeInput} />
             <Button
                 disabled={!isFilled || isCreatePending}
