@@ -20,3 +20,32 @@ export function validateImageFile(file: File) {
     throw new Error("Invalid file");
   }
 }
+
+export function checkUpdateFormChanged(
+  e: React.FormEvent<HTMLFormElement>
+): boolean {
+  const form = e.currentTarget;
+  let hasChanged = false;
+
+  // checkbox checked 값이 false일 경우 FormData에 포함되지 않음
+  const elements = Array.from(form.elements) as (
+    | HTMLInputElement
+    | HTMLTextAreaElement
+  )[];
+  for (const element of elements) {
+    if (!element.name) continue;
+    let flag = false;
+    if (element instanceof HTMLInputElement && element.type === "checkbox") {
+      // input checkbox
+      flag = element.checked !== element.defaultChecked;
+    } else {
+      // input text | textarea
+      flag = element.value !== element.defaultValue;
+    }
+    if (flag) {
+      hasChanged = true;
+      break;
+    }
+  }
+  return hasChanged;
+}

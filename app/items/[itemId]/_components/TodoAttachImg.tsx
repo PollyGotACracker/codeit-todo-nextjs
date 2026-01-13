@@ -10,8 +10,8 @@ import EditSvg from '@/icons/edit.svg';
 import { uploadImage } from '../_actions';
 import { validateImageFile } from '../_helpers';
 
-type TodoAttachImgType = Pick<ItemDetail, "imageUrl"> & { setIsChanged: React.Dispatch<React.SetStateAction<boolean>> };
-export default function TodoAttachImg({ imageUrl, setIsChanged }: TodoAttachImgType) {
+type TodoAttachImgType = Pick<ItemDetail, "imageUrl">
+export default function TodoAttachImg({ imageUrl }: TodoAttachImgType) {
     const [image, setImage] = useState(imageUrl ?? "");
     const [alert, setAlert] = useState("");
 
@@ -26,7 +26,6 @@ export default function TodoAttachImg({ imageUrl, setIsChanged }: TodoAttachImgT
             formData.append('image', file);
             const res = await uploadImage(formData);
             setImage(res.url);
-            setIsChanged(true);
             setAlert("");
         } catch (e) {
             if (e instanceof Error) {
@@ -41,11 +40,11 @@ export default function TodoAttachImg({ imageUrl, setIsChanged }: TodoAttachImgT
 
     return (
         <section className="w-full h-full desktop:max-w-[384px] relative">
-            <label htmlFor="image" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
+            <label htmlFor="imageFile" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
                 {!image ? <PlusLgSvg /> : <EditSvg />}
             </label>
-            {/* image: 이미지 업로드용 input. FormData 미포함 */}
-            <input type="file" id="image" accept="image/*" onChange={upload} hidden />
+            {/* image: 이미지 업로드용 input. 데이터 변경 감지를 위해 name 속성 포함 */}
+            <input type="file" id="imageFile" name="imageFile" defaultValue="" accept="image/*" onChange={upload} hidden />
             <input type="text" id="imageUrl" name="imageUrl" value={image} readOnly hidden />
             {!image ?
                 <AttachImgEmpty /> :
