@@ -39,7 +39,7 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
     }
 
     return (
-        <section className="w-full h-full desktop:max-w-[384px] relative">
+        <section className="w-full h-full min-h-[311px] desktop:max-w-[384px] relative">
             <label htmlFor="imageFile" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
                 {!image ? <PlusLgSvg /> : <EditSvg />}
             </label>
@@ -52,8 +52,8 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
                     src={image}
                     alt="todo image"
                     fill
-                    className="object-cover rounded-[24px]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="w-full h-full min-h-[311px] object-cover rounded-[24px]"
+                    sizes="100vw, 100vh"
                 />}
             <p className="absolute w-full bottom-0 translate-y-[100%] break-keep text-center">{alert}</p>
         </section>
@@ -62,7 +62,7 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
 
 function AttachImgEmpty() {
     return (
-        <div className="w-full h-full rounded-[24px] bg-slate-50 border-slate-300 border-[2px] border-dashed flex justify-center items-center">
+        <div className="w-full h-full min-h-[311px] rounded-[24px] bg-slate-50 border-slate-300 border-[2px] border-dashed flex justify-center items-center">
             <ImgSvg />
         </div>
     )
