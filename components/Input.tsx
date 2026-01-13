@@ -27,7 +27,7 @@ export default function Input({ id, name, placeholder, ...props }: InputHTMLAttr
                 autoComplete="false"
                 onChange={onChange}
                 {...props}
-                className="absolute w-full outline-none px-[24px] translate-y-[-3.5px]"
+                className="absolute w-[calc(100%-24px)] outline-none pl-[24px] translate-y-[-3.5px]"
             />
         </div >
     )
