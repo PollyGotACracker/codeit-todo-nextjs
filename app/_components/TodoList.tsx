@@ -6,11 +6,11 @@ import DoneSvg from "@/images/done.svg";
 import TodoEmptySvg from "@/images/todo_empty.svg"
 import DoneEmptySvg from "@/images/done_empty.svg"
 
-interface TodoList {
+interface TodoListProps {
     data: Item[],
     type: 'todo' | 'done'
 }
-export default function TodoList({ data, type }: TodoList) {
+export default function TodoList({ data, type }: TodoListProps) {
     const { Title, empty } = UI_DATA[type]
 
     if (data.length < 1) return (

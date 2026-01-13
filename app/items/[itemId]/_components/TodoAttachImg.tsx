@@ -10,8 +10,8 @@ import EditSvg from '@/icons/edit.svg';
 import { uploadImage } from '../_actions';
 import { validateImageFile } from '../_helpers';
 
-type TodoAttachImgType = Pick<ItemDetail, "imageUrl">
-export default function TodoAttachImg({ imageUrl }: TodoAttachImgType) {
+type TodoAttachImgProps = Pick<ItemDetail, "imageUrl">
+export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
     const [image, setImage] = useState(imageUrl ?? "");
     const [alert, setAlert] = useState("");
 

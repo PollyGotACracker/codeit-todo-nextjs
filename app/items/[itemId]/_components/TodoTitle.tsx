@@ -5,8 +5,8 @@ import { ItemDetail } from '@/types';
 import DotSvg from '@/icons/dot.svg';
 import DotDoneSvg from '@/icons/dot_done.svg';
 
-type TodoTitleType = Pick<ItemDetail, "name" | "isCompleted">;
-export default function TodoTitle({ name, isCompleted }: TodoTitleType) {
+type TodoTitleProps = Pick<ItemDetail, "name" | "isCompleted">;
+export default function TodoTitle({ name, isCompleted }: TodoTitleProps) {
     const [isChecked, setIsChecked] = useState<boolean>(isCompleted);
 
     const onChangeCompleted = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes } from 'react';
 import CapsuleSvg from '@/images/capsule.svg';
 
-interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,
     text: string,
     hideMobileText?: boolean,
@@ -17,7 +17,7 @@ export default function Button({
     textColor = "var(--slate-900)",
     type = "button",
     ...props
-}: ButtonType) {
+}: ButtonProps) {
     const key = !hideMobileText ? "visible" : "hidden"
 
     return (

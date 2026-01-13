@@ -2,8 +2,8 @@ import { ItemDetail } from '@/types';
 import { ITEM_TEXT } from '@/constants/messages';
 import MemoSvg from '@/images/memo.svg';
 
-type TodoMemoType = Pick<ItemDetail, "memo">;
-export default function TodoMemo({ memo }: TodoMemoType) {
+type TodoMemoProps = Pick<ItemDetail, "memo">;
+export default function TodoMemo({ memo }: TodoMemoProps) {
     return (
         <section
             className="isolate w-full h-full relative rounded-[16px] px-[8px] py-[16px] flex flex-col justify-center items-center gap-y-[16px]"

@@ -14,10 +14,10 @@ import TodoMemo from "./TodoMemo";
 import Button from "@/components/Button";
 import useServerAction from "@/hooks/useServerAction";
 
-interface TodoUpdate {
+interface TodoUpdateProps {
     data: ItemDetail;
 }
-export default function TodoUpdate({ data }: TodoUpdate) {
+export default function TodoUpdate({ data }: TodoUpdateProps) {
     const [isChanged, setIsChanged] = useState(false);
     const _update = updateItem.bind(null, data.id);
     const _delete = deleteItem.bind(null, data.id);
