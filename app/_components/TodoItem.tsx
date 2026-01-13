@@ -10,10 +10,10 @@ export default function TodoItem({ id, name, isCompleted }: Item) {
     const styleKey = !isCompleted ? 'undone' : 'done';
     return (
         <li className={`w-full h-[50px] rounded-[27px] border-[2px] border-slate-900 flex items-center gap-[16px] px-[16px] py-[8px] ${BgStyles[styleKey]}`}>
-            <button onClick={async () => completeItem(id, !isCompleted)}>
+            <button type="button" title={`${name} checkbox`} onClick={async () => completeItem(id, !isCompleted)}>
                 {!isCompleted ? <DotSvg /> : <DotDoneSvg />}
             </button>
-            <Link href={`/items/${id}`}>
+            <Link href={`/items/${id}`} className="flex-1">
                 <span className={`text-slate-800 ${nameStyles[styleKey]}`}>{name}</span>
             </Link>
         </li>
