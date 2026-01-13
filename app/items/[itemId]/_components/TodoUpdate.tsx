@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect, useState, } from "react";
 import { ItemDetail } from "@/types";
-import { ROUTE } from "@/constants/route";
 import { ITEM_TEXT } from "@/constants/messages";
 import { deleteItem, updateItem } from "../_actions";
 import { checkUpdateFormChanged } from "../_helpers";
@@ -12,27 +10,22 @@ import TodoTitle from "./TodoTitle";
 import TodoAttachImg from "./TodoAttachImg";
 import TodoMemo from "./TodoMemo";
 import Button from "@/components/Button";
-import useServerAction from "@/hooks/useServerAction";
+import { findFormSubmit } from "@/libs/handlers";
 
 interface TodoUpdateProps {
     data: ItemDetail;
 }
 export default function TodoUpdate({ data }: TodoUpdateProps) {
-    const [isChanged, setIsChanged] = useState(false);
-    const _update = updateItem.bind(null, data.id);
-    const _delete = deleteItem.bind(null, data.id);
-    const [updateAction, isUpdatePending, isUpdateSuccess] = useServerAction(_update, ROUTE.HOME);
-    const [deleteAction, isDeletePending] = useServerAction(_delete, ROUTE.HOME);
-
-    useEffect(() => {
-        if (isUpdateSuccess) {
-            setIsChanged(false);
-        }
-    }, [isUpdateSuccess])
+    const updateAction = updateItem.bind(null, data.id);
+    const deleteAction = deleteItem.bind(null, data.id);
 
     const onChangeForm = (e: React.FormEvent<HTMLFormElement>) => {
         const hasChanged = checkUpdateFormChanged(e);
-        setIsChanged(hasChanged);
+        const form = e.currentTarget;
+        const submitBtn = findFormSubmit(form) as HTMLButtonElement;
+        if (submitBtn) {
+            submitBtn.disabled = !hasChanged;
+        }
     }
 
     return (
@@ -43,15 +36,15 @@ export default function TodoUpdate({ data }: TodoUpdateProps) {
                 <TodoMemo memo={data?.memo} />
             </section>
             <section className="w-full flex flex-wrap justify-center desktop:justify-end gap-[7px] desktop:gap-[16px] mt-[24px]">
+                {/* disabled true: initial */}
                 <Button
-                    disabled={!isChanged || isUpdatePending}
+                    disabled={true}
                     type="submit"
                     Icon={CheckSvg}
                     text={ITEM_TEXT.UPDATE_BUTTON}
-                    {...(isChanged) && { bgColor: "var(--lime-300)" }}
+                    bgColor="var(--lime-300)"
                 />
                 <Button
-                    disabled={isDeletePending}
                     type="button"
                     Icon={XSvg}
                     text={ITEM_TEXT.DELETE_BUTTON}

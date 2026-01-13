@@ -1,7 +1,16 @@
+"use server";
+
 import fetcher from "@/libs/fetcher";
 import { Item } from "@/types";
 
-export default async function getItems() {
-  const endpoint = `/items`;
+type GetItemsParams = {
+  page?: number;
+  pageSize?: number;
+};
+export default async function getItems({
+  page = 1,
+  pageSize = 10,
+}: GetItemsParams) {
+  const endpoint = `/items?page=${page}&pageSize=${pageSize}`;
   return fetcher<Item[]>(endpoint);
 }

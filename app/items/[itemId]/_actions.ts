@@ -1,7 +1,7 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import fetcher from "@/libs/fetcher";
-import { revalidatePath } from "next/cache";
 import { ImageUploadRes, ItemDetail } from "@/types";
 import { ROUTE } from "@/constants/route";
 
@@ -17,7 +17,7 @@ export async function updateItem(itemId: number, formData: FormData) {
     body: JSON.stringify({ name, memo, imageUrl, isCompleted }),
   });
 
-  revalidatePath(`${ROUTE.ITEMS}/${itemId}`);
+  redirect(ROUTE.HOME);
 }
 
 export async function uploadImage(formData: FormData): Promise<ImageUploadRes> {
@@ -26,6 +26,7 @@ export async function uploadImage(formData: FormData): Promise<ImageUploadRes> {
     method: "POST",
     body: formData,
   });
+
   return res;
 }
 
@@ -34,4 +35,6 @@ export async function deleteItem(itemId: number) {
   await fetcher<ItemDetail>(endpoint, {
     method: "DELETE",
   });
+
+  redirect(ROUTE.HOME);
 }

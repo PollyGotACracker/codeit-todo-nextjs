@@ -1,3 +1,5 @@
+import { findFormField, validateText } from "@/libs/handlers";
+
 export function validateImageFile(file: File) {
   let flag = true;
 
@@ -35,6 +37,7 @@ export function checkUpdateFormChanged(
   for (const element of elements) {
     if (!element.name) continue;
     let flag = false;
+
     if (element instanceof HTMLInputElement && element.type === "checkbox") {
       // input checkbox
       flag = element.checked !== element.defaultChecked;
@@ -47,5 +50,11 @@ export function checkUpdateFormChanged(
       break;
     }
   }
+
+  const nameInput = findFormField(form, "name") as HTMLButtonElement;
+  if (validateText(nameInput.value)) {
+    return false;
+  }
+
   return hasChanged;
 }

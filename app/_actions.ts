@@ -10,7 +10,7 @@ export async function createItem(formData: FormData) {
   if (!name) return;
 
   const endpoint = `/items`;
-  await fetcher<ItemDetail>(endpoint, {
+  fetcher<ItemDetail>(endpoint, {
     method: "POST",
     body: JSON.stringify({ name }),
   });

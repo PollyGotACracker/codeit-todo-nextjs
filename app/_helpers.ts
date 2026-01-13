@@ -1,6 +1,6 @@
 import { Item } from "@/types";
 
-interface GroupedItems {
+export interface GroupedItems {
   todo: Item[];
   done: Item[];
 }
