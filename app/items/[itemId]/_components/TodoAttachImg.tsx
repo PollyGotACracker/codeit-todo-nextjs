@@ -40,26 +40,24 @@ export default function TodoAttachImg({ imageUrl, setIsChanged }: TodoAttachImgT
     }
 
     return (
-        <>
-            <section className="w-full h-full max-w-[384px] relative">
-                <label htmlFor="image" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
-                    {!image ? <PlusLgSvg /> : <EditSvg />}
-                </label>
-                {/* image: 이미지 업로드용 input. FormData 미포함 */}
-                <input type="file" id="image" accept="image/*" onChange={upload} hidden />
-                <input type="text" id="imageUrl" name="imageUrl" value={image} readOnly hidden />
-                {!image ?
-                    <AttachImgEmpty /> :
-                    <Image
-                        src={image}
-                        alt="todo image"
-                        fill
-                        className="object-cover rounded-[24px]"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                    />}
-            </section>
-            <p>{alert}</p>
-        </>
+        <section className="w-full h-full desktop:max-w-[384px] relative">
+            <label htmlFor="image" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
+                {!image ? <PlusLgSvg /> : <EditSvg />}
+            </label>
+            {/* image: 이미지 업로드용 input. FormData 미포함 */}
+            <input type="file" id="image" accept="image/*" onChange={upload} hidden />
+            <input type="text" id="imageUrl" name="imageUrl" value={image} readOnly hidden />
+            {!image ?
+                <AttachImgEmpty /> :
+                <Image
+                    src={image}
+                    alt="todo image"
+                    fill
+                    className="object-cover rounded-[24px]"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                />}
+            <p className="absolute w-full bottom-0 translate-y-[100%] break-keep text-center">{alert}</p>
+        </section>
     )
 }
 

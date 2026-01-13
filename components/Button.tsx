@@ -4,7 +4,7 @@ import CapsuleSvg from '@/images/capsule.svg';
 interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
     Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,
     text: string,
-    hideText?: boolean,
+    hideMobileText?: boolean,
     bgColor?: string,
     textColor?: string
     type?: "button" | "submit" | "reset" | undefined,
@@ -12,30 +12,39 @@ interface ButtonType extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button({
     Icon,
     text,
-    hideText = false,
+    hideMobileText = false,
     bgColor = "var(--slate-100)",
     textColor = "var(--slate-900)",
     type = "button",
     ...props
 }: ButtonType) {
+    const key = !hideMobileText ? "visible" : "hidden"
+
     return (
         <button
             type={type}
             {...props}
-            className={`relative min-w-[56px] max-w-[168px] h-[56px] outline-none`}
+            className={`isolate relative ${BUTTON_STYLE[key]} desktop:w-[168px] h-[56px] flex-shrink-0 outline-none`}
         >
-            <span className="inline-flex justify-center items-center gap-x-[4px] pr-[7px] pb-[7px]">
-                <Icon stroke={textColor} />
-                {!hideText && <span
-                    className="font-bold"
+            <span className="z-1 relative inline-flex justify-center items-center gap-x-[4px] translate-x-[-3.5px] translate-y-[-3.5px]">
+                <Icon stroke={textColor} className="translate-y-[1px]" />
+                <span
+                    className={`font-bold ${TEXT_STYLE[key]} desktop:inline-block`}
                     style={{ color: textColor } as React.CSSProperties}
                 >
                     {text}
-                </span>}
+                </span>
             </span>
-            <CapsuleSvg width="100%" height="100%" fill={bgColor} className="absolute top-[0px] z-[-1]" />
+            <CapsuleSvg width="100%" height="100%" fill={bgColor} className="absolute top-[0px]" />
         </button>
-
     )
 }
 
+const BUTTON_STYLE = {
+    hidden: "w-[56px]",
+    visible: "w-[168px]"
+}
+const TEXT_STYLE = {
+    hidden: "hidden",
+    visible: "inline-block"
+}

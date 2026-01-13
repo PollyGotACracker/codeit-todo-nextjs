@@ -35,6 +35,7 @@ export default function TodoAdd() {
                 type="submit"
                 Icon={PlusSvg}
                 text={HOME_TEXT.CREATE_BUTTON}
+                hideMobileText={true}
                 {...isFilled && { bgColor: "var(--violet-600)", textColor: "#fff" }}
             />
         </form>

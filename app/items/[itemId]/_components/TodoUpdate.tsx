@@ -56,13 +56,13 @@ export default function TodoUpdate({ data }: TodoUpdate) {
     }
 
     return (
-        <form action={updateAction} onChange={onChangeForm} className="w-full flex flex-col items-center">
+        <form action={updateAction} onChange={onChangeForm} className="w-full max-w-[996px] h-full flex flex-col items-center">
             <TodoTitle name={data?.name} isCompleted={data?.isCompleted} />
-            <section className="w-full h-[311px] flex justify-center gap-[24px]">
+            <section className="w-full h-full desktop:h-[311px] flex flex-col desktop:flex-row justify-center gap-x-[24px] gap-y-[15px] mt-[17px] desktop:mt-[24px]">
                 <TodoAttachImg imageUrl={data?.imageUrl} setIsChanged={setIsChanged} />
                 <TodoMemo memo={data?.memo} />
             </section>
-            <section className="w-full flex justify-end gap-[24px]">
+            <section className="w-full flex flex-wrap justify-center desktop:justify-end gap-[7px] desktop:gap-[16px] mt-[24px]">
                 <Button
                     disabled={!isChanged || isUpdatePending}
                     type="submit"

@@ -10,7 +10,7 @@ export default async function TodoItem({ params }: PageProps) {
     const res = await getItem(itemId);
 
     return (
-        <main className="flex">
+        <main className="main bg-white">
             <TodoUpdate data={res} />
         </main>
     )

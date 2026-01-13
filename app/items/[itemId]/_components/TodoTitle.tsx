@@ -14,7 +14,7 @@ export default function TodoTitle({ name, isCompleted }: TodoTitleType) {
     };
 
     return (
-        <div className={`${isChecked ? 'bg-violet-200' : 'bg-transparent'} w-full max-w-[966px] h-[64px] rounded-[27px] border-[2px] border-slate-900 flex justify-center items-center gap-[16px] px-[16px] py-[8px]`}>
+        <div className={`${isChecked ? 'bg-violet-200' : 'bg-transparent'} w-full max-w-[996px] h-[64px] rounded-[27px] border-[2px] border-slate-900 flex justify-center items-center gap-[16px] px-[16px] py-[8px]`}>
             <label htmlFor="isCompleted" className="cursor-pointer">
                 <input
                     type="checkbox"
@@ -27,7 +27,12 @@ export default function TodoTitle({ name, isCompleted }: TodoTitleType) {
                 />
                 {!isChecked ? <DotSvg /> : <DotDoneSvg />}
             </label>
-            <input id="name" name="name" defaultValue={name} className="text-slate-900 font-bold text-xl underline text-center outline-none" />
+            <input
+                id="name"
+                name="name"
+                defaultValue={name}
+                className="min-w-0 text-slate-900 font-bold text-xl underline text-center outline-none"
+            />
         </div >
     )
 }
