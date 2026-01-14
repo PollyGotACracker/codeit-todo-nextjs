@@ -14,21 +14,18 @@ interface TodoListProps {
 export default function TodoList({ data, type }: TodoListProps) {
     const { Title, empty } = UI_DATA[type]
 
-    if (data.length < 1) return (
-        <section className="w-full flex flex-col gap-y-[16px]"> {/* desktop 64px */}
-            <Title />
-            <div className="flex flex-col items-center gap-y-[16px]"> {/* desktop 24px */}
-                <empty.EmptyImg className="w-[120px] desktop:w-[240px] h-[120px] desktop:h-[240px]" />
-                <p className="whitespace-pre-line text-center text-slate-400 font-bold">{empty.msg}</p>
-            </div>
-        </section>
-    )
     return (
-        <section className="w-full flex flex-col gap-y-[16px]">{/* desktop 64px */}
+        <section className="w-full flex flex-col gap-y-[16px]">
             <Title />
-            <ul className="flex flex-col gap-y-[16px]"> {/* desktop 24px */}
-                {data.map(i => <TodoItem key={i.id} {...i} />)}
-            </ul>
+            {data.length >= 1 ?
+                <ul className="flex flex-col gap-y-[16px]">
+                    {data.map(i => <TodoItem key={i.id} {...i} />)}
+                </ul> :
+                <div className="flex flex-col items-center gap-y-[16px] desktop:gap-y-[24px]">
+                    <empty.EmptyImg className="w-[120px] desktop:w-[240px] h-[120px] desktop:h-[240px]" />
+                    <p className="whitespace-pre-line text-center text-slate-400 font-bold">{empty.msg}</p>
+                </div>
+            }
         </section>
     )
 }
