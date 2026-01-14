@@ -1,5 +1,3 @@
-"use server";
-
 import fetcher from "@/libs/fetcher";
 import { ItemDetail } from "@/types";
 

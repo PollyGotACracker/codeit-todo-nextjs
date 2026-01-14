@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import fetcher from "@/libs/fetcher";
 import { ImageUploadRes, ItemDetail } from "@/types";
 import { ROUTE } from "@/constants/route";
@@ -17,6 +18,8 @@ export async function updateItem(itemId: number, formData: FormData) {
     body: JSON.stringify({ name, memo, imageUrl, isCompleted }),
   });
 
+  revalidatePath(ROUTE.HOME);
+  revalidatePath(`${ROUTE.ITEMS}/${itemId}`);
   redirect(ROUTE.HOME);
 }
 
@@ -36,5 +39,7 @@ export async function deleteItem(itemId: number) {
     method: "DELETE",
   });
 
+  revalidatePath(ROUTE.HOME);
+  revalidatePath(`${ROUTE.ITEMS}/${itemId}`);
   redirect(ROUTE.HOME);
 }
