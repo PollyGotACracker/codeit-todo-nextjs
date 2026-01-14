@@ -1,8 +1,13 @@
-import { ButtonHTMLAttributes } from 'react';
-import CapsuleSvg from '@/images/capsule.svg';
+'use client';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,
+import CapsuleSvg from '@/images/capsule.svg';
+import PlusSvg from '@/icons/plus.svg';
+import CheckSvg from "@/icons/check.svg";
+import XSvg from "@/icons/x.svg";
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    // Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>,
+    iconType: "insert" | "update" | "delete",
     text: string,
     hideMobileText?: boolean,
     bgColor?: string,
@@ -10,7 +15,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     type?: "button" | "submit" | "reset" | undefined,
 }
 export default function Button({
-    Icon,
+    iconType,
     text,
     hideMobileText = false,
     bgColor = "var(--slate-100)",
@@ -18,12 +23,13 @@ export default function Button({
     type = "button",
     ...props
 }: ButtonProps) {
-    const key = !hideMobileText ? "visible" : "hidden"
+    const Icon = ICON_TYPE[iconType];
+    const key = !hideMobileText ? "visible" : "hidden";
 
     return (
         <button
-            type={type}
             {...props}
+            type={type}
             className={`group isolate relative ${BUTTON_STYLE[key]} desktop:w-[168px] h-[56px] flex-shrink-0 outline-none`}
         >
             <span className="z-1 relative inline-flex justify-center items-center gap-x-[4px] translate-x-[-3.5px] translate-y-[-3.5px]">
@@ -43,6 +49,12 @@ export default function Button({
             />
         </button>
     )
+}
+
+const ICON_TYPE = {
+    insert: PlusSvg,
+    update: CheckSvg,
+    delete: XSvg
 }
 
 const BUTTON_STYLE = {

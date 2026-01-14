@@ -4,8 +4,6 @@ import { ItemDetail } from "@/types";
 import { ITEM_TEXT } from "@/constants/messages";
 import { deleteItem, updateItem } from "../_actions";
 import { checkUpdateFormChanged } from "../_helpers";
-import CheckSvg from "@/icons/check.svg";
-import XSvg from "@/icons/x.svg";
 import TodoTitle from "./TodoTitle";
 import TodoAttachImg from "./TodoAttachImg";
 import TodoMemo from "./TodoMemo";
@@ -40,13 +38,13 @@ export default function TodoUpdate({ data }: TodoUpdateProps) {
                 <Button
                     disabled={true}
                     type="submit"
-                    Icon={CheckSvg}
+                    iconType="update"
                     text={ITEM_TEXT.UPDATE_BUTTON}
                     bgColor="var(--lime-300)"
                 />
                 <Button
                     type="button"
-                    Icon={XSvg}
+                    iconType="delete"
                     text={ITEM_TEXT.DELETE_BUTTON}
                     bgColor="var(--rose-500)"
                     textColor="#fff"

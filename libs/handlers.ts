@@ -1,5 +1,5 @@
 export function validateText(text: string): boolean {
-  return text.trim().length === 0;
+  return text.trim().length > 0;
 }
 
 export function findFormField(form: HTMLFormElement, name: string) {

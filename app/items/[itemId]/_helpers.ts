@@ -52,7 +52,7 @@ export function checkUpdateFormChanged(
   }
 
   const nameInput = findFormField(form, "name") as HTMLButtonElement;
-  if (validateText(nameInput.value)) {
+  if (!validateText(nameInput.value)) {
     return false;
   }
 
