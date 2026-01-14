@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { ItemDetail } from '@/types';
-import { ITEM_TEXT } from '@/constants/messages';
+import { ITEM_TEXT } from '@/constants/strings';
+import { ERROR_MSG } from '@/constants/errors';
 import ImgSvg from '@/images/img.svg';
 import PlusLgSvg from '@/icons/plus_lg.svg';
 import EditSvg from '@/icons/edit.svg';
@@ -33,7 +34,7 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
                 // 에러가 발생한 imageFile 업로드 파일 삭제
                 e.target.value = '';
                 // 유효성 검사
-                if (err.message === "Invalid file") {
+                if (err.message === ERROR_MSG.INVALID_ATTACH_IMG) {
                     setAlert(ITEM_TEXT.INVALID_FILE_ALERT);
                 }
                 // 서버 에러

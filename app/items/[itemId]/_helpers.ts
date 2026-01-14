@@ -1,3 +1,4 @@
+import { ERROR_MSG } from "@/constants/errors";
 import { findFormField, validateText } from "@/libs/handlers";
 
 export function validateImageFile(file: File) {
@@ -19,7 +20,7 @@ export function validateImageFile(file: File) {
   }
 
   if (!flag) {
-    throw new Error("Invalid file");
+    throw new Error(ERROR_MSG.INVALID_ATTACH_IMG);
   }
 }
 

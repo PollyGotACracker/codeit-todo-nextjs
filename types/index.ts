@@ -1,3 +1,9 @@
+export type ActionState = {
+  error?: string;
+  success?: boolean;
+  data?: unknown;
+} | null;
+
 export interface Item {
   id: number;
   name: string;

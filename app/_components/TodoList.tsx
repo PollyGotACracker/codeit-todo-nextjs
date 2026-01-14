@@ -1,5 +1,5 @@
 import { Item } from "@/types";
-import { HOME_TEXT } from "@/constants/messages";
+import { HOME_TEXT } from "@/constants/strings";
 import TodoItem from "./TodoItem";
 import TodoSvg from "@/images/todo.svg";
 import DoneSvg from "@/images/done.svg";

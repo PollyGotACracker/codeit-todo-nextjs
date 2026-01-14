@@ -1,5 +1,5 @@
 import { ItemDetail } from '@/types';
-import { ITEM_TEXT } from '@/constants/messages';
+import { ITEM_TEXT } from '@/constants/strings';
 import MemoSvg from '@/images/memo.svg';
 
 // 메모 표시, 수정 컴포넌트
