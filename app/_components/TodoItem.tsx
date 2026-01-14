@@ -6,6 +6,7 @@ import DotDoneSvg from '@/icons/dot_done.svg';
 import { Item } from '@/types';
 import { completeItem } from '@/app/_actions';
 
+// Todo 목록 항목 컴포넌트
 export default function TodoItem({ id, name, isCompleted }: Item) {
     const styleKey = !isCompleted ? 'undone' : 'done';
     return (

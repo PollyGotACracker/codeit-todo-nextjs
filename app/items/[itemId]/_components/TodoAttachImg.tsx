@@ -26,7 +26,7 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
             const formData = new FormData();
             formData.append('image', file);
             const res = await uploadImage(formData);
-            setImage(res.url);
+            setImage(res.url); // imageUrl 저장
             setAlert("");
         } catch (err) {
             if (err instanceof Error) {

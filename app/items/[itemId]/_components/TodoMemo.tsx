@@ -2,6 +2,7 @@ import { ItemDetail } from '@/types';
 import { ITEM_TEXT } from '@/constants/messages';
 import MemoSvg from '@/images/memo.svg';
 
+// 메모 표시, 수정 컴포넌트
 type TodoMemoProps = Pick<ItemDetail, "memo">;
 export default function TodoMemo({ memo }: TodoMemoProps) {
     return (

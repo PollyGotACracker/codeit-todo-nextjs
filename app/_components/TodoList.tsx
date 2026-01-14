@@ -6,6 +6,7 @@ import DoneSvg from "@/images/done.svg";
 import TodoEmptySvg from "@/images/todo_empty.svg"
 import DoneEmptySvg from "@/images/done_empty.svg"
 
+// Todo 목록 컴포넌트
 interface TodoListProps {
     data: Item[],
     type: 'todo' | 'done'
@@ -39,7 +40,8 @@ const UI_DATA = {
             EmptyImg: TodoEmptySvg,
             msg: HOME_TEXT.TODO_EMPTY_MSG
         }
-    }, done: {
+    },
+    done: {
         Title: DoneSvg,
         empty: {
             EmptyImg: DoneEmptySvg,

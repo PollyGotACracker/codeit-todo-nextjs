@@ -8,10 +8,12 @@ import { useEffect, useState } from "react";
 import useServerAction from "@/hooks/useServerAction";
 import { validateText } from "@/libs/handlers";
 
+// Todo 항목 추가 폼 컴포넌트
 export default function TodoAdd() {
     const [isFilled, setIsFilled] = useState(false);
     const [createAction, isCreatePending] = useServerAction(createItem);
 
+    // name 필드 빈 텍스트 및 pending 상태 확인 => submit 버튼 활성화
     useEffect(() => {
         if (isCreatePending) {
             setIsFilled(false);

@@ -1,6 +1,7 @@
 import TodoList from './TodoList';
 import { GroupedItems } from '../_helpers';
 
+// Todo 목록 Wrapper 컴포넌트
 interface TodoSectionProps { data: GroupedItems }
 export default function TodoSection({ data }: TodoSectionProps) {
     return (

@@ -2,21 +2,21 @@
 
 import { ItemDetail } from "@/types";
 import { ITEM_TEXT } from "@/constants/messages";
+import { findFormSubmit } from "@/libs/handlers";
 import { deleteItem, updateItem } from "../_actions";
 import { checkUpdateFormChanged } from "../_helpers";
 import TodoTitle from "./TodoTitle";
 import TodoAttachImg from "./TodoAttachImg";
 import TodoMemo from "./TodoMemo";
 import Button from "@/components/Button";
-import { findFormSubmit } from "@/libs/handlers";
 
-interface TodoUpdateProps {
-    data: ItemDetail;
-}
+// Todo 항목 수정, 삭제 폼 컴포넌트
+interface TodoUpdateProps { data: ItemDetail }
 export default function TodoUpdate({ data }: TodoUpdateProps) {
     const updateAction = updateItem.bind(null, data.id);
     const deleteAction = deleteItem.bind(null, data.id);
 
+    // 기존 데이터와의 변경 확인 => submit 버튼 활성화
     const onChangeForm = (e: React.FormEvent<HTMLFormElement>) => {
         const hasChanged = checkUpdateFormChanged(e);
         const form = e.currentTarget;

@@ -44,7 +44,6 @@
   --font-size-xl: var(--fs-xl);
 
   /* breakpoints */
-  /* --breakpoint-*: initial; */
   --breakpoint-mobile: 375px;
   --breakpoint-desktop: 744px;
   --breakpoint-wide: 1920px;
