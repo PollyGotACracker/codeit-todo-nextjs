@@ -48,14 +48,14 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
     return (
         <section className="w-full h-full min-h-[311px] desktop:max-w-[384px]">
             <input type="text" id="imageUrl" name="imageUrl" value={image} readOnly hidden />
-            <div className="w-full h-full relative">
+            <div className="w-full h-full min-h-[311px] relative">
                 {!image ?
                     <AttachImgEmpty /> :
                     <Image
                         src={image}
                         alt="todo image"
                         fill
-                        className="w-full h-full min-h-[311px] object-cover rounded-[24px]"
+                        className="w-full h-full object-cover rounded-[24px]"
                         sizes="100vw, 100vh"
                     />}
                 <label htmlFor="imageFile" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
