@@ -10,6 +10,7 @@ import EditSvg from '@/icons/edit.svg';
 import { uploadImage } from '../_actions';
 import { validateImageFile } from '../_helpers';
 
+// 이미지 첨부, 표시 컴포넌트
 type TodoAttachImgProps = Pick<ItemDetail, "imageUrl">
 export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
     const [image, setImage] = useState(imageUrl ?? "");
@@ -27,11 +28,16 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
             const res = await uploadImage(formData);
             setImage(res.url);
             setAlert("");
-        } catch (e) {
-            if (e instanceof Error) {
-                if (e.message === "Invalid file") {
+        } catch (err) {
+            if (err instanceof Error) {
+                // 에러가 발생한 imageFile 업로드 파일 삭제
+                e.target.value = '';
+                // 유효성 검사
+                if (err.message === "Invalid file") {
                     setAlert(ITEM_TEXT.INVALID_FILE_ALERT);
-                } else {
+                }
+                // 서버 에러
+                else {
                     setAlert(ITEM_TEXT.ERROR_FILE_ALERT);
                 }
             }
@@ -39,27 +45,30 @@ export default function TodoAttachImg({ imageUrl }: TodoAttachImgProps) {
     }
 
     return (
-        <section className="w-full h-full min-h-[311px] desktop:max-w-[384px] relative">
-            <label htmlFor="imageFile" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
-                {!image ? <PlusLgSvg /> : <EditSvg />}
-            </label>
-            {/* image: 이미지 업로드용 input. 데이터 변경 감지를 위해 name 속성 포함 */}
-            <input type="file" id="imageFile" name="imageFile" defaultValue="" accept="image/*" onChange={upload} hidden />
+        <section className="w-full h-full min-h-[311px] desktop:max-w-[384px]">
             <input type="text" id="imageUrl" name="imageUrl" value={image} readOnly hidden />
-            {!image ?
-                <AttachImgEmpty /> :
-                <Image
-                    src={image}
-                    alt="todo image"
-                    fill
-                    className="w-full h-full min-h-[311px] object-cover rounded-[24px]"
-                    sizes="100vw, 100vh"
-                />}
-            <p className="absolute w-full bottom-0 translate-y-[100%] break-keep text-center">{alert}</p>
+            <div className="w-full h-full relative">
+                {!image ?
+                    <AttachImgEmpty /> :
+                    <Image
+                        src={image}
+                        alt="todo image"
+                        fill
+                        className="w-full h-full min-h-[311px] object-cover rounded-[24px]"
+                        sizes="100vw, 100vh"
+                    />}
+                <label htmlFor="imageFile" className={`${AttachImgButtonStyle[!image ? "add" : "edit"]} absolute z-[1] bottom-[16px] right-[16px] w-[64px] h-[64px] flex justify-center items-center rounded-[50%] cursor-pointer`}>
+                    {!image ? <PlusLgSvg /> : <EditSvg />}
+                    {/* imageFile: 이미지 업로드용 input. 데이터 변경 감지를 위해 name 속성 포함 */}
+                    <input type="file" id="imageFile" name="imageFile" defaultValue="" accept="image/*" onChange={upload} hidden />
+                </label>
+            </div>
+            <p className="w-full break-keep text-center">{alert}</p>
         </section>
     )
 }
 
+// 빈 이미지 영역 컴포넌트
 function AttachImgEmpty() {
     return (
         <div className="w-full h-full min-h-[311px] rounded-[24px] bg-slate-50 border-slate-300 border-[2px] border-dashed flex justify-center items-center">
